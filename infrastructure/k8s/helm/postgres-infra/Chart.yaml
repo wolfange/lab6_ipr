@@ -1,0 +1,6 @@
+apiVersion: v2
+name: sales-aggregator-postgres
+description: PostgreSQL infrastructure for Sales Aggregator
+type: application
+version: 0.1.0
+appVersion: "15"

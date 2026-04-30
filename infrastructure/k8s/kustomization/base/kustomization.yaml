@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - postgres-statefulset.yaml
+  - postgres-service.yaml
+
+commonLabels:
+  app: postgres
+  part-of: infrastructure
+
+vars:
+  - name: POSTGRES_PASSWORD
+    objref:
+      kind: Secret
+      name: postgres-credentials
+      apiVersion: v1
+    fieldref:
+      fieldpath: data.password
