@@ -1,0 +1,24 @@
+environment: ""
+
+imagePullPolicy: IfNotPresent
+
+app:
+  image:
+    repository: sales-aggregator
+    tag: latest
+  replicas: 2
+  port: 8000
+  resources:
+    requests:
+      memory: 128Mi
+      cpu: 100m
+    limits:
+      memory: 512Mi
+      cpu: 500m
+
+database:
+  url: ""
+
+secretLabels: {}
+
+labels: {}

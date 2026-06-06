@@ -1,0 +1,17 @@
+environment: prod
+
+app:
+  replicas: 3
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 250m
+    limits:
+      memory: 1024Mi
+      cpu: "1"
+
+database:
+  url: postgresql://postgres:REPLACE_WITH_PASSWORD@postgres-0.postgres.sales-prod.svc.cluster.local:5432/sales_db?sslmode=disable
+
+labels:
+  environment: prod

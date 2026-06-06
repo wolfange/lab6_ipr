@@ -1,0 +1,17 @@
+environment: dev
+
+app:
+  replicas: 1
+  resources:
+    requests:
+      memory: 64Mi
+      cpu: 50m
+    limits:
+      memory: 256Mi
+      cpu: 250m
+
+database:
+  url: postgresql://postgres:postgres@postgres-0.postgres:5432/sales_db?sslmode=disable
+
+labels:
+  environment: dev

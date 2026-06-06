@@ -1,0 +1,26 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: sales-demo
+
+bases:
+  - ../../base
+
+patches:
+  - path: patch-replicas.yaml
+    target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: sales-aggregator
+
+secretGenerator:
+  - name: sales-aggregator-secrets
+    literals:
+      - database-url=postgresql://postgres:postgres@postgres-0.postgres:5432/sales_db?sslmode=disable
+      - django-secret-key=django-insecure-lab6-dev-secret
+    options:
+      disableNameSuffixHash: true
+
+commonLabels:
+  environment: dev

@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - deployment.yaml
+  - service.yaml
+  - configmap.yaml
+
+commonLabels:
+  app: sales-aggregator
+  part-of: application
+
+vars:
+  - name: DATABASE_URL
+    objref:
+      kind: Secret
+      name: sales-aggregator-secrets
+      apiVersion: v1
+    fieldref:
+      fieldpath: data.database-url
